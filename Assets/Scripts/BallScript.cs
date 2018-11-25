@@ -10,6 +10,7 @@ public class BallScript : MonoBehaviour {
     public float speed;
     public Transform explosion;
     public GameManager gm;
+    public Transform powerup;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -49,11 +50,24 @@ public class BallScript : MonoBehaviour {
     {
         if (other.transform.CompareTag("brick"))
         {
-            Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
-            Destroy(newExplosion.gameObject, 2.5f);
-            gm.UpdateScore(other.gameObject.GetComponent<BrickScript>().points);
-            gm.UpdateNumberOfBricks();
-            Destroy(other.gameObject);
+            BrickScript brickScript = other.gameObject.GetComponent<BrickScript>();
+            if (brickScript.hitsToBreak > 1)
+            {
+                brickScript.BreakBrick();
+            } else {
+                int randChance = Random.Range(1, 101);
+                if (randChance < 50)
+                {
+                    Instantiate(powerup, other.transform.position, other.transform.rotation);
+                }
+
+                Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
+                Destroy(newExplosion.gameObject, 2.5f);
+
+                gm.UpdateScore(brickScript.points);
+                gm.UpdateNumberOfBricks();
+                Destroy(other.gameObject);
+            }
         }
     }
 }
