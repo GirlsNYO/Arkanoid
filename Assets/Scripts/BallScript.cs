@@ -10,17 +10,20 @@ public class BallScript : MonoBehaviour {
     public float speed;
     public Transform explosion;
     public GameManager gm;
+    public float ballForce;
     public Transform powerup;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
-	}
+        rb.AddForce(new Vector2(ballForce, ballForce));
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (gm.gameOver)
         {
             return;
+           
         }
 
         if (!inPlay)
@@ -33,7 +36,8 @@ public class BallScript : MonoBehaviour {
             inPlay = true;
             rb.AddForce(Vector2.up * speed);
         }
-	}
+
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {

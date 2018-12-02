@@ -619,6 +619,7 @@ MonoBehaviour:
   speed: 360
   explosion: {fileID: 4063783759488222, guid: 764bbe9d841f65f4d8f5d616855253ee, type: 2}
   gm: {fileID: 1349993666}
+  ballForce: 80
   powerup: {fileID: 4239528442603104, guid: 8466fe7a388e74bb1add6ed24c977ba6, type: 2}
 --- !u!58 &622485946
 CircleCollider2D:
