@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     public int score;
     public Text lives_text;
     public Text score_text;
+    public Text highScoreText;
     public bool gameOver;
     public GameObject gameOverPanel;
     public GameObject loadLevelPannel;
@@ -76,6 +77,17 @@ public class GameManager : MonoBehaviour {
     {
         gameOver = true;
         gameOverPanel.SetActive (true);
+        int highScore = PlayerPrefs.GetInt("HIGHSCORE");
+        if (score > highScore)
+        {
+            PlayerPrefs.SetInt("HIGHSCORE", score);
+
+            highScoreText.text = "New High Score! " + score;
+        }
+        else
+        {
+            highScoreText.text = "High Score: " + highScore;
+        }
     }
 
     public void PlayAgain()
@@ -85,7 +97,6 @@ public class GameManager : MonoBehaviour {
 
     public void Quit()
     {
-        Application.Quit();
-        Debug.Log("Quit");
+        SceneManager.LoadScene("Start Menu");
     }
 }
