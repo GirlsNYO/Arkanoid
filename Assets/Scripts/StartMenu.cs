@@ -8,9 +8,11 @@ public class StartMenu : MonoBehaviour {
 
     public Text highscoreText;
 
+    // Use this for initialization
     void Start()
     {
         highscoreText.text = "High Score: " + PlayerPrefs.GetInt("HIGHSCORE");
+       
     }
 
     public void QuitGame() {

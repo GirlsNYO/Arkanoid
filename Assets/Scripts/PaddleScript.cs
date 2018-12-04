@@ -8,6 +8,7 @@ public class PaddleScript : MonoBehaviour {
     public float rightScreenEdge;
     public float leftScreenEdge;
     public GameManager gm;
+    public BallScript bs;
 
     // Use this for initialization
     void Start () {
@@ -36,8 +37,35 @@ public class PaddleScript : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {
-        gm.UpdateLives(1);
-        Destroy(other.gameObject);
+     {
+        if (other.CompareTag("extraLife"))
+        {
+            gm.UpdateLives(1);
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("fasterSpeed"))
+        {
+            bs.speed = bs.speed + 50;
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("lowerSpeed"))
+        {
+            bs.speed = bs.speed - 50;
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("widePaddle"))
+        {
+            GetComponent<Transform>().localScale = new Vector2(20, 2f);
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("thinPaddle"))
+        {
+            GetComponent<Transform>().localScale = new Vector2(10, 2f);
+            Destroy(other.gameObject);
+        }
     }
 }

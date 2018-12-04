@@ -11,9 +11,16 @@ public class BallScript : MonoBehaviour {
     public Transform explosion;
     public GameManager gm;
     public float ballForce;
-    public Transform powerup;
-	// Use this for initialization
-	void Start () {
+    public Transform extraLife;
+    public Transform fasterSpeed;
+    public Transform lowerSpeed;
+    public Transform widePaddle;
+    public Transform thinPaddle;
+
+    public int whichpowerup;
+
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(new Vector2(ballForce, ballForce));
     }
@@ -39,6 +46,7 @@ public class BallScript : MonoBehaviour {
 
     }
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("bottom"))
@@ -55,23 +63,44 @@ public class BallScript : MonoBehaviour {
         if (other.transform.CompareTag("brick"))
         {
             BrickScript brickScript = other.gameObject.GetComponent<BrickScript>();
+     
             if (brickScript.hitsToBreak > 1)
             {
                 brickScript.BreakBrick();
             } else {
-                int randChance = Random.Range(1, 101);
-                if (randChance < 50)
+                    whichpowerup = Random.Range(1, 6);
+
+                    if (whichpowerup == 1)
+                    {
+                        Instantiate(extraLife, transform.position, extraLife.rotation);
+                    }
+
+                   else if (whichpowerup == 2)
+                    {
+                        Instantiate(fasterSpeed, transform.position, fasterSpeed.rotation);
+                    }
+
+                     else if (whichpowerup == 3)
+                     {
+                        Instantiate(lowerSpeed, transform.position, lowerSpeed.rotation);
+                     }
+
+                else if (whichpowerup == 4)
                 {
-                    Instantiate(powerup, other.transform.position, other.transform.rotation);
+                    Instantiate(widePaddle, transform.position, widePaddle.rotation);
                 }
 
+                else if (whichpowerup == 5)
+                {
+                    Instantiate(thinPaddle, transform.position, thinPaddle.rotation);
+                }
                 Transform newExplosion = Instantiate(explosion, other.transform.position, other.transform.rotation);
                 Destroy(newExplosion.gameObject, 2.5f);
 
                 gm.UpdateScore(brickScript.points);
                 gm.UpdateNumberOfBricks();
                 Destroy(other.gameObject);
-                speed = speed + 10;
+                speed = speed + 5;
             }
         }
     }

@@ -620,7 +620,13 @@ MonoBehaviour:
   explosion: {fileID: 4063783759488222, guid: 764bbe9d841f65f4d8f5d616855253ee, type: 2}
   gm: {fileID: 1349993666}
   ballForce: 80
-  powerup: {fileID: 4239528442603104, guid: 8466fe7a388e74bb1add6ed24c977ba6, type: 2}
+  extraLife: {fileID: 4239528442603104, guid: 8466fe7a388e74bb1add6ed24c977ba6, type: 2}
+  fasterSpeed: {fileID: 4655535041007034, guid: da0ecfdfaf210774baa4aa43e7d32eb9,
+    type: 2}
+  lowerSpeed: {fileID: 4256870286520194, guid: fd91f47bd166ff847b6b9563adefc425, type: 2}
+  widePaddle: {fileID: 4375604606329128, guid: 1cb9e0e9c080914498ca2f38c345adc1, type: 2}
+  thinPaddle: {fileID: 4982127746908654, guid: f8fac7ef215ac6d47adf6c3ca03ea2b4, type: 2}
+  whichpowerup: 0
 --- !u!58 &622485946
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -969,6 +975,7 @@ MonoBehaviour:
   rightScreenEdge: 5.6
   leftScreenEdge: -5.6
   gm: {fileID: 1349993666}
+  bs: {fileID: 622485945}
 --- !u!212 &1050516090
 SpriteRenderer:
   m_ObjectHideFlags: 0

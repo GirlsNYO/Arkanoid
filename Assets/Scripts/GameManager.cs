@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
     public int numberOfBricks;
     public Transform[] levels;
     public int currentLevelIndex = 0;
+
+
 	// Use this for initialization
 	void Start () {
         lives_text.text = "Lives: " + lives;
