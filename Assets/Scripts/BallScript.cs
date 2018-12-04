@@ -71,6 +71,7 @@ public class BallScript : MonoBehaviour {
                 gm.UpdateScore(brickScript.points);
                 gm.UpdateNumberOfBricks();
                 Destroy(other.gameObject);
+                speed = speed + 10;
             }
         }
     }
